@@ -7,9 +7,9 @@ interface Item {
   right: number,
   top: number,
   botom: number
-}
+};
 
-interface Main extends Item {}
+interface Main extends Item {};
 
 function App() {
 
