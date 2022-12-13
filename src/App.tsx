@@ -2,12 +2,20 @@ import { MouseEvent, useRef, useState } from 'react';
 import '../src/App.scss';
 
 
+interface Item {
+  left: number,
+  right: number,
+  top: number,
+  botom: number
+}
+
+interface Main extends Item {}
 
 function App() {
 
-  const [itemClientX, setElementClientX] = useState(0);
-  const [itemClientY, setElementClientY] = useState(0);
-  const [cursorClientY, setCursorClientY] = useState(0);
+  const [itemClientX, setElementClientX] = useState<number>(0);
+  const [itemClientY, setElementClientY] = useState<number>(0);
+  const [cursorClientY, setCursorClientY] = useState<number>(0);
 
   const mainRef = useRef<HTMLDivElement | null>(null);
   const areaRef = useRef<HTMLDivElement | null>(null);
@@ -20,16 +28,15 @@ function App() {
   const itemWidth = itemRef.current ? itemRef.current.offsetWidth : 0;
   const itemWidthHalf = itemWidth / 2;
 
-  
 
-  const item = {
+  const item: Item = {
     left: itemClientX - itemWidthHalf,
     right: itemClientX + itemWidthHalf,
     top: itemClientY - itemWidthHalf,
     botom: itemClientY + itemWidthHalf
   };
 
-  const main = {
+  const main: Main = {
     left: mainRef.current ? mainRef.current?.offsetLeft : 0,
     right: mainRef.current ? mainRef.current?.offsetLeft + mainWidth : 0,
     top: mainRef.current ? mainRef.current.offsetTop : 0,
